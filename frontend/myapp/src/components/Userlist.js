@@ -56,8 +56,8 @@ function UserList() {
       <div className="flex flex-col mt-[100px]">
           <h2 className="mt-11 mb-11 text-center text-lg font-semibold">User List</h2>
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="inline-block py-2 sm:px-6 lg:px-8 bg-blue-200 border rounded-md ">
-            <div className="overflow-hidden">
+          <div className="py-2 sm:px-6 lg:px-8 bg-blue-200 border rounded-md ">
+            <div className="overflow-auto">
               <table className="min-w-full text-left text-sm font-light">
                 <thead className="border-b font-medium dark:border-neutral-500">
                   <tr>
@@ -74,7 +74,7 @@ function UserList() {
                       Role
                     </th>
                     <th scope="col" className="px-4 py-2 font-normal">
-                      Delete
+                      Actions
                     </th>
                   </tr>
                 </thead>
@@ -87,7 +87,7 @@ function UserList() {
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
                         {user.id}
                       </td>
-                      <td className="text-center">
+                      <td className="">
                 <Link to={`/user/${user.id}`}>{user.username}</Link>
               </td>
                       <td className="whitespace-nowrap px-6 py-4">
@@ -97,8 +97,8 @@ function UserList() {
                         {user.role}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                      <button onClick={() => handleDeleteUser(user.id)} className="font-sm">
-                        ❌
+                      <button onClick={() => handleDeleteUser(user.id)} className="font-sm text-red-400">
+                        Delete
                      </button>
                       </td>
                     </tr>
