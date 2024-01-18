@@ -2,21 +2,46 @@ const express = require("express");
 const app = express();
 const fs = require("fs");
 const path = require("path");
-const cors = require('cors')
+const cors = require('cors');
+const itemsPerPage = 6;
 const jsondata = require("../mockdata.json");
 const dataFilePath = path.resolve(__dirname, "../mockdata.json");
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.get("/api/users", (req, res) => {
-  // console.log("jsondata = ", jsondata)
-  res.json(require("../mockdata.json"));
+  const page = req.query.page || 1;
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+  const paginatedData = jsondata.slice(startIndex, endIndex);
+  res.json({
+    totalItems: jsondata.length,
+    currentPage: page,
+    totalPages: Math.ceil(jsondata.length / itemsPerPage),
+    users: paginatedData
+  });
+  // res.json(require("../mockdata.json"));
 });
 app.get("/api/user/:id", (req, res) => {
   const id = Number(req.params.id);
   const userwithid = jsondata.find((user) => user.id === id);
   res.json(userwithid);
 });
+app.post("/api/createuser", (req, res) => {
+  const body = req.body;
+  // console.log("body", body);
+  const newid = jsondata[jsondata.length - 1].id;
+  // console.log(newid);
+  jsondata.push({ ...body, id: newid + 1 });
+  fs.writeFile(dataFilePath, JSON.stringify(jsondata), (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.send("Data successfully write in JSON File");
+    }
+  });
+});
+
 app.put("/api/userupdate/:id",(req,res)=>{
   const taskId = Number(req.params.id);
   console.log(req.body);

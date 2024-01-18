@@ -36,17 +36,19 @@ function UserDetails() {
 
   return (
     <div class="min-h-screen bg-gray-100 flex items-center justify-center">
-    <div class="px-10">
+    <div class="px-15">
       <div class="bg-white max-w-xl rounded-2xl px-10 py-8 shadow-lg hover:shadow-2xl transition duration-500">
        
         <div class="mt-4">
           <h1 class="text-lg text-gray-700 font-semibold hover:underline cursor-pointer">{user.username}</h1>
          
-          <p class="mt-4 text-md text-gray-600">ID: {user.id} Role: {user.role}</p>
+          <p class="mt-4 text-md text-gray-600">ID: {user.id}</p>
+          <p class="mt-4 text-md text-gray-600 mb-6">Email: {user.email}</p>
+      <p>  {user.username} is an individual named user who interacts with a system, application, or service. As a user, {user.username} engages in various actions, such as providing input, executing commands, or accessing features within the digital environment.</p> 
+          <p class="mt-4 text-md text-gray-600">Role: {user.role}</p>
           <div class="flex justify-between items-center">
-            <div class="mt-4 flex items-center space-x-4 py-6">
-              </div>
-              <button
+            <div class="mt-4 flex items-center space-x-5 ml-[200px] py-6">
+            <button
               onClick={handleEdit}
               className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
             >
@@ -58,6 +60,8 @@ function UserDetails() {
             >
               Back
             </button>
+              </div>
+            
           </div>
         </div>
       </div>

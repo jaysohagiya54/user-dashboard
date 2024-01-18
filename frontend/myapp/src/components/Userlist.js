@@ -6,8 +6,13 @@ import { useNavigate } from 'react-router-dom';
 
 function UserList() {
   const [users, setUsers] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1);
   const navigate = useNavigate();
-
+  const handlePageChange = (newPage) => {
+    console.log("button is clicked");
+    setCurrentPage(newPage);
+  };
   const handleDeleteUser = (userId) => {
     const isConfirmed = window.confirm('Are you sure you want to delete this user?');
     if (!isConfirmed) {
@@ -27,15 +32,23 @@ function UserList() {
       })
       .catch((error) => console.error('Error deleting user:', error));
   };
-  
-
+  const fetchData = async () => {
+    try {
+      console.log("Called API");
+      const response = await fetch(
+        `http://localhost:3000/api/users?page=${currentPage}`
+      );
+      const data = await response.json();
+      setTotalPage(data.totalPages);
+      setUsers(data.users);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   useEffect(() => {
-    // Replace the URL with your backend API endpoint
-    fetch("http://localhost:3000/api/users")
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.error("Error fetching users:", error));
-  }, []);
+    fetchData();
+  }, [currentPage]);
+  
 
   return (
     <div>
@@ -93,10 +106,26 @@ function UserList() {
                 </tbody>
               </table>
             </div>
-            
+            <div className="float-center my-2 mx-2">
+            <button
+              className=" text-white py-2 px-4 rounded cursor-pointer"
+              onClick={() => handlePageChange(currentPage - 1)}
+              disabled={currentPage === 1}
+            >
+              ⬅
+            </button>
+            <span className="text-gray-600 text-sm mx-2">Page {currentPage}</span>
+            <button
+              className= "text-white py-2 px-4 rounded cursor-pointer"
+              onClick={() => handlePageChange(currentPage + 1)}
+              disabled={currentPage === totalPage}
+            >
+              ➡️
+            </button>
+          </div>           
         
          </div>
-        
+         
         </div>
       </div>
       <button className="border-black-md mt-[40px] text-lg text-cyan-800 rounded-md bg-slate-100 w-[140px]" onClick={() => navigate('/create')}>Create User</button>   

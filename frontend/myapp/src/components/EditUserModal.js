@@ -66,7 +66,7 @@ const EditUserModal = ({ isOpen, onClose, onEdit, id }) => {
   };
   return (
     <div
-      className={`fixed inset-0 z-50 overflow-auto ${isOpen ? "" : "hidden"}`}
+      className={`fixed inset-0 z-50 overflow-auto ${isOpen ? "backdrop-blur-md" : "hidden"}`}
     >
       <div className="flex items-center justify-center min-h-screen">
         <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
