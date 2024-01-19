@@ -77,19 +77,19 @@ const EditUserModal = ({ isOpen, onClose, onEdit, id }) => {
               <input
                 type="text"
                 name="username"
-                value={editedDetails.userame}
+                value={editedDetails.username}
                 onChange={handleChange}
-                className="border border-gray-300 p-2 w-full mt-1"
+                className="border border-gray-300 p-2 w-full mt-1" required
               />
             </label>
             <label className="block mb-4">
               Email:
               <input
-                type="text"
+                type="email"
                 name="email"
                 value={editedDetails.email}
                 onChange={handleChange}
-                className="border border-gray-300 p-2 w-full mt-1"
+                className="border border-gray-300 p-2 w-full mt-1" placeholder="name@flowbite.com" required
               />
             </label>
             <label className="block mb-4">
@@ -99,7 +99,7 @@ const EditUserModal = ({ isOpen, onClose, onEdit, id }) => {
                 name="role"
                 value={editedDetails.role}
                 onChange={handleChange}
-                className="border border-gray-300 p-2 w-full mt-1"
+                className="border border-gray-300 p-2 w-full mt-1" required
               />
             </label>
             <div className="flex justify-end">

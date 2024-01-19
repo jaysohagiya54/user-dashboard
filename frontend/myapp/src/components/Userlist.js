@@ -1,8 +1,7 @@
 // src/components/UserList.js
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useNavigate } from 'react-router-dom';
-
+import { useNavigate } from "react-router-dom";
 
 function UserList() {
   const [users, setUsers] = useState([]);
@@ -14,23 +13,27 @@ function UserList() {
     setCurrentPage(newPage);
   };
   const handleDeleteUser = (userId) => {
-    const isConfirmed = window.confirm('Are you sure you want to delete this user?');
+    const isConfirmed = window.confirm(
+      "Are you sure you want to delete this user?"
+    );
     if (!isConfirmed) {
       return;
     }
     // Make a DELETE request to the server to delete the user
     fetch(`http://localhost:3000/api/userdelete/${userId}`, {
-      method: 'DELETE',
+      method: "DELETE",
     })
       .then((response) => {
         if (response.ok) {
           // Update the local state after successful deletion
-          setUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
+          setUsers((prevUsers) =>
+            prevUsers.filter((user) => user.id !== userId)
+          );
         } else {
-          console.error('Failed to delete user.');
+          console.error("Failed to delete user.");
         }
       })
-      .catch((error) => console.error('Error deleting user:', error));
+      .catch((error) => console.error("Error deleting user:", error));
   };
   const fetchData = async () => {
     try {
@@ -48,13 +51,13 @@ function UserList() {
   useEffect(() => {
     fetchData();
   }, [currentPage]);
-  
 
   return (
     <div>
-    
       <div className="flex flex-col mt-[100px]">
-          <h2 className="mt-11 mb-11 text-center text-lg font-semibold">User List</h2>
+        <h2 className="mt-11 mb-11 text-center text-lg font-semibold">
+          User List
+        </h2>
         <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
           <div className="py-2 sm:px-6 lg:px-8 bg-blue-200 border rounded-md ">
             <div className="overflow-auto">
@@ -88,8 +91,8 @@ function UserList() {
                         {user.id}
                       </td>
                       <td className="">
-                <Link to={`/user/${user.id}`}>{user.username}</Link>
-              </td>
+                        <Link to={`/user/${user.id}`}>{user.username}</Link>
+                      </td>
                       <td className="whitespace-nowrap px-6 py-4">
                         {user.email}
                       </td>
@@ -97,39 +100,48 @@ function UserList() {
                         {user.role}
                       </td>
                       <td className="whitespace-nowrap px-6 py-4">
-                      <button onClick={() => handleDeleteUser(user.id)} className="font-sm text-red-400">
-                        Delete
-                     </button>
+                        <button
+                          onClick={() => handleDeleteUser(user.id)}
+                          className="font-sm text-red-400"
+                        >
+                          Delete
+                        </button>
                       </td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-            <div className="float-center my-2 mx-2">
-            <button
-              className=" text-white py-2 px-4 rounded cursor-pointer"
-              onClick={() => handlePageChange(currentPage - 1)}
-              disabled={currentPage === 1}
-            >
-              ⬅
-            </button>
-            <span className="text-gray-600 text-sm mx-2">Page {currentPage}</span>
-            <button
-              className= "text-white py-2 px-4 rounded cursor-pointer"
-              onClick={() => handlePageChange(currentPage + 1)}
-              disabled={currentPage === totalPage}
-            >
-              ➡️
-            </button>
-          </div>           
-        
-         </div>
-         
+
+            <div class="flex ml-[766px] mt-4">
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                disabled={currentPage === 1}
+                class="flex items-center justify-center px-3 h-8 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                Previous
+              </button>
+              <span className="text-gray-600 text-sm mx-2 my-2">
+                Page {currentPage}
+              </span>
+
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                disabled={currentPage === totalPage}
+                class="flex items-center justify-center px-3 h-8 ms-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+              >
+                Next
+              </button>
+            </div>
+          </div>
         </div>
       </div>
-      <button className="border-black-md mt-[40px] text-lg text-cyan-800 rounded-md bg-slate-100 w-[140px]" onClick={() => navigate('/create')}>Create User</button>   
-
+      <button
+        className="items-center justify-center px-3 h-8 mt-6 text-lg font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-blue-00 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        onClick={() => navigate("/create")}
+      >
+        Create User
+      </button>
     </div>
   );
 }
