@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useFetcher } from "react-router-dom";
 const CreateUser = () => {
   const navigate = useNavigate();
   const [editedDetails, setEditedDetails] = useState({
