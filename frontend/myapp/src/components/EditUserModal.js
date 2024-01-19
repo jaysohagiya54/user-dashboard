@@ -66,11 +66,11 @@ const EditUserModal = ({ isOpen, onClose, onEdit, id }) => {
   };
   return (
     <div
-      className={`fixed inset-0 z-50 overflow-auto ${isOpen ? "backdrop-blur-md" : "hidden"}`}
+      className={`fixed inset-0 z-50 overflow-x-auto ${isOpen ? "backdrop-blur-md" : "hidden"}`}
     >
-      <div className="flex items-center justify-center min-h-screen">
-        <div className="bg-white p-8 rounded shadow-md w-full max-w-md">
-          <h2 className="text-2xl font-bold mb-4">Edit User Details</h2>
+      <div className="flex items-center justify-center min-h-screen  bg-green-50 shadow-lg hover:shadow-2xl transition duration-500">
+        <div className="bg-white p-8 border rounded-md shadow-md w-full max-w-md">
+          <h2 className="text-2xl font-bold mb-4 text-green-900">Edit User Details</h2>
           <form  onSubmit={handleSubmit}>
             <label className="block mb-4">
               User name:
@@ -102,7 +102,7 @@ const EditUserModal = ({ isOpen, onClose, onEdit, id }) => {
                 className="border border-gray-300 p-2 w-full mt-1" required
               />
             </label>
-            <div className="flex justify-end">
+            <div className="flex justify-around gap-1">
               <button
                 type="button"
                 onClick={onClose}
@@ -112,7 +112,7 @@ const EditUserModal = ({ isOpen, onClose, onEdit, id }) => {
               </button>
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
+                className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600"
               >
                 Save Changes
               </button>

@@ -54,15 +54,14 @@ function UserList() {
 
   return (
     <div>
-      <div className="flex flex-col mt-[100px]">
-        <h2 className="mt-11 mb-11 text-center text-lg font-semibold">
-          User List
-        </h2>
-        <div className="overflow-x-auto sm:-mx-6 lg:-mx-8">
-          <div className="py-2 sm:px-6 lg:px-8 bg-blue-200 border rounded-md ">
+      <div className="flex flex-col mt-[150px] shadow-lg hover:shadow-2xl transition duration-500">
+      <h1 className="text-2xl font-bold mb-4 font-serif text-green-900">User Dashboard</h1>
+
+        <div className="inline-block w-full max-h-screen px-10 overflow-hidden overflow-x-auto sm:-mx-6 lg:-mx-8 ">
+          <div className="py-2 sm:px-6 lg:px-8 bg-green-50 border shadow-lg border-gray-400 rounded-md ">
             <div className="overflow-auto">
               <table className="min-w-full text-left text-sm font-light">
-                <thead className="border-b font-medium dark:border-neutral-500">
+                <thead className="border-b font-medium dark:border-neutral-900">
                   <tr>
                     <th scope="col" className="px-6 py-4">
                       ID
@@ -84,7 +83,7 @@ function UserList() {
                 <tbody>
                   {users.map((user) => (
                     <tr
-                      className="border-b dark:border-neutral-500"
+                      className="border-b dark:border-neutral-900"
                       key={user.id}
                     >
                       <td className="whitespace-nowrap px-6 py-4 font-medium">
@@ -113,7 +112,7 @@ function UserList() {
               </table>
             </div>
 
-            <div class="flex ml-[766px] mt-4">
+            <div class="flex justify-around pt-2">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
@@ -137,7 +136,7 @@ function UserList() {
         </div>
       </div>
       <button
-        className="items-center justify-center px-3 h-8 mt-6 text-lg font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-blue-00 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
+        className="items-center justify-center px-3 h-8 mt-6 text-lg font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-green-00 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         onClick={() => navigate("/create")}
       >
         Create User

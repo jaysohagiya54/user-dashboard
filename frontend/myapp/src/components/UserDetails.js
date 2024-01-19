@@ -50,13 +50,13 @@ function UserDetails() {
             <div class="mt-4 flex items-center space-x-5 ml-[200px] py-6">
             <button
               onClick={handleEdit}
-              className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
+              className="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600"
             >
               Edit
             </button>
               <button
               onClick={() => navigate('/')}
-              className="bg-blue-500 text-white px-2 py-1 rounded-md hover:bg-blue-600"
+              className="bg-green-500 text-white px-2 py-1 rounded-md hover:bg-green-600"
             >
               Back
             </button>
